@@ -1,4 +1,4 @@
-﻿namespace Source1.Entities
+﻿namespace Source1
 {
     public class User
     {

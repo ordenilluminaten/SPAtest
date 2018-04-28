@@ -5,14 +5,18 @@ using System.Net;
 using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Description;
-using Source2.Concrete;
-using Source2.Entities;
+using Source2;
 
 namespace SPAtest.Controllers
 {
     public class DepartmentsController : ApiController
     {
-        private SecondContext db = new SecondContext();
+        private readonly SecondContext db;
+
+        public DepartmentsController()
+        {
+            db = new SecondContext();
+        }
 
         // GET: api/Departments
         public IQueryable<Department> GetDepartments()

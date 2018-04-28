@@ -1,4 +1,4 @@
-﻿namespace Source2.Entities
+﻿namespace Source2
 {
     public class Department
     {

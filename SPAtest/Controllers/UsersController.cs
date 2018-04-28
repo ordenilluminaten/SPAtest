@@ -5,14 +5,18 @@ using System.Net;
 using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Description;
-using Source1.Concrete;
-using Source1.Entities;
+using Source1;
 
 namespace SPAtest.Controllers
 {
     public class UsersController : ApiController
     {
-        private FirstContext db = new FirstContext();
+        private readonly FirstContext db;
+
+        public UsersController()
+        {
+            db = new FirstContext();
+        }
 
         // GET: api/Users
         public IQueryable<User> GetUsers()

@@ -1,7 +1,6 @@
 ﻿using System.Data.Entity;
-using Source1.Entities;
 
-namespace Source1.Concrete
+namespace Source1
 {
     public class FirstContext : DbContext
     {

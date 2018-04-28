@@ -5,14 +5,14 @@ namespace Source2.Migrations
     using System.Data.Entity.Migrations;
     using System.Linq;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<Source2.Concrete.SecondContext>
+    internal sealed class Configuration : DbMigrationsConfiguration<SecondContext>
     {
         public Configuration()
         {
             AutomaticMigrationsEnabled = false;
         }
 
-        protected override void Seed(Source2.Concrete.SecondContext context)
+        protected override void Seed(SecondContext context)
         {
             //  This method will be called after migrating to the latest version.
 

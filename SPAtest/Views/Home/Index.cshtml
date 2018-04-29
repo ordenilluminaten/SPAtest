@@ -29,3 +29,14 @@
         <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
     </div>
 </div>
+
+<script>
+    fetch('/api/users')
+        .then((response) => {
+            return response.json();
+        })
+        .then((users) => {
+            console.log(users);
+        })
+        .catch(alert);
+</script>

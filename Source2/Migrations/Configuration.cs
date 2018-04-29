@@ -14,10 +14,16 @@ namespace Source2.Migrations
 
         protected override void Seed(SecondContext context)
         {
-            //  This method will be called after migrating to the latest version.
-
-            //  You can use the DbSet<T>.AddOrUpdate() helper extension method 
-            //  to avoid creating duplicate seed data.
+            if (context.Departments.Any())
+                return;
+            for (int i = 1; i <= 15; i++)
+            {
+                context.Departments.Add(new Department
+                {
+                    Title = $"Department_{i}"
+                });
+            }
+            context.SaveChanges();
         }
     }
 }

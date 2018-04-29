@@ -1,4 +1,5 @@
-﻿using System.Data.Entity;
+﻿using System.Collections.Generic;
+using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Net;
@@ -6,6 +7,7 @@ using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Description;
 using Source1;
+using Source2;
 
 namespace SPAtest.Controllers
 {
@@ -19,9 +21,21 @@ namespace SPAtest.Controllers
         }
 
         // GET: api/Users
-        public IQueryable<User> GetUsers()
+        public async Task<IEnumerable<User>> GetUsers()
         {
-            return db.Users;
+            Dictionary<int, Department> deps;
+            using (var depCtx = new SecondContext())
+            {
+                deps = await depCtx.Departments.ToDictionaryAsync(x => x.Id, x => x);
+            }
+            return (await db.Users.ToListAsync())
+                .Select(x => new User
+                {
+                    Id = x.Id,
+                    UserName = x.UserName, 
+                    DepartmentId = x.DepartmentId,
+                    DepartmentTitle = deps[x.DepartmentId].Title
+                });
         }
 
         // GET: api/Users/5

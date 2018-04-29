@@ -14,10 +14,17 @@ namespace Source1.Migrations
 
         protected override void Seed(FirstContext context)
         {
-            //  This method will be called after migrating to the latest version.
-
-            //  You can use the DbSet<T>.AddOrUpdate() helper extension method 
-            //  to avoid creating duplicate seed data.
+            if (context.Users.Any())
+                return;
+            for (int i = 1; i < 5; i++)
+            {
+                context.Users.Add(new User
+                {
+                    UserName = $"User_{i}",
+                    DepartmentId = i
+                });
+            }
+            context.SaveChanges();
         }
     }
 }
